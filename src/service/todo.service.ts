@@ -1,6 +1,7 @@
 import HandleError from "../utils/HandleError";
 import { Todo } from "../entity/todo.entity";
 import { myDataSource } from "../app-data-source";
+import { BadRequestError, CustomError } from "../core/error.response";
 
 interface TodoInterface {
   name?: string;
@@ -15,9 +16,11 @@ class TodoService {
       const todos = await todoRepository.find();
       return todos;
     } catch (error) {
-      console.log("err", error);
-      if (error instanceof HandleError) {
-        throw new HandleError(error.message);
+      console.log(error);
+      if (error instanceof BadRequestError) {
+        throw new BadRequestError(error.message);
+      } else if (error instanceof CustomError) {
+        throw new CustomError(error.message, error.status);
       } else {
         throw new Error();
       }
@@ -30,19 +33,16 @@ class TodoService {
       const todo = await todoRepository.findOneBy({ id: id });
 
       if (!todo) {
-        throw new HandleError(
-          JSON.stringify({
-            status: 404,
-            message: "Khong tim thay todo",
-          })
-        );
+        throw new CustomError("Khong tim thay todo", 404);
       }
 
       return todo;
     } catch (error) {
-      console.log("err", error);
-      if (error instanceof HandleError) {
-        throw new HandleError(error.message);
+      console.log(error);
+      if (error instanceof BadRequestError) {
+        throw new BadRequestError(error.message);
+      } else if (error instanceof CustomError) {
+        throw new CustomError(error.message, error.status);
       } else {
         throw new Error();
       }
@@ -55,9 +55,11 @@ class TodoService {
       const result = await myDataSource.getRepository(Todo).save(todo);
       return result;
     } catch (error) {
-      console.log("err", error);
-      if (error instanceof HandleError) {
-        throw new HandleError(error.message);
+      console.log(error);
+      if (error instanceof BadRequestError) {
+        throw new BadRequestError(error.message);
+      } else if (error instanceof CustomError) {
+        throw new CustomError(error.message, error.status);
       } else {
         throw new Error();
       }
@@ -70,12 +72,7 @@ class TodoService {
       const todoToUpdate = await todoRepository.findOneBy({ id: id });
 
       if (!todoToUpdate) {
-        throw new HandleError(
-          JSON.stringify({
-            status: 404,
-            message: "Khong tim thay todo de update",
-          })
-        );
+        throw new CustomError("Khong tim thay todo", 404);
       }
 
       myDataSource.getRepository(Todo).merge(todoToUpdate, todo);
@@ -83,9 +80,11 @@ class TodoService {
       console.log("result", todo);
       return result;
     } catch (error) {
-      console.log("err", error);
-      if (error instanceof HandleError) {
-        throw new HandleError(error.message);
+      console.log(error);
+      if (error instanceof BadRequestError) {
+        throw new BadRequestError(error.message);
+      } else if (error instanceof CustomError) {
+        throw new CustomError(error.message, error.status);
       } else {
         throw new Error();
       }
@@ -95,11 +94,18 @@ class TodoService {
   static async deleteTodo(id: number) {
     try {
       const results = await myDataSource.getRepository(Todo).delete(id);
+
+      if (!results) {
+        throw new CustomError("Khong tim thay todo", 404);
+      }
+
       return results;
     } catch (error) {
-      console.log("err", error);
-      if (error instanceof HandleError) {
-        throw new HandleError(error.message);
+      console.log(error);
+      if (error instanceof BadRequestError) {
+        throw new BadRequestError(error.message);
+      } else if (error instanceof CustomError) {
+        throw new CustomError(error.message, error.status);
       } else {
         throw new Error();
       }

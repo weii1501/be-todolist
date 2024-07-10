@@ -9,7 +9,7 @@ class Database {
     this.dataSource = new DataSource({
       type: "sqlite",
       database: "database.sqlite",
-      entities: [__dirname + '/../**/*.entity.js'],
+      entities: [__dirname + "/../**/*.entity.js"],
       logging: true,
       synchronize: true,
     });
@@ -20,7 +20,7 @@ class Database {
     this.dataSource
       .initialize()
       .then(async () => {
-        console.log(__dirname + '/../**/*.entity.js')
+        console.log(__dirname + "/../**/*.entity.js");
         console.log("Data Source has been initialized!");
         // Example: Add a new user to the database
         // const user = new User();
