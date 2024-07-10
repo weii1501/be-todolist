@@ -5,7 +5,7 @@ This is a Todo List API built with TypeScript, Express, TypeORM, and SQLite in-m
 
 ## Prerequisites
 
-- Node.js (version 14 or above)
+- Node.js, Typescript
 - Yarn package manager
 
 ## Installation
@@ -41,6 +41,8 @@ yarn dev
 ```bash
 yarn test
 ```
+2. Run the tests using Postman
+- You can use the TodoList.postman_collection.json file to import into Postman for testing.
 
 ## Environment Variables
 The application uses the following environment variables:
