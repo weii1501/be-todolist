@@ -51,6 +51,7 @@ describe("POST /v1/api/todos", () => {
 describe("POST /v1/api/todos", () => {
   it("Task name must be non-empty", async () => {
     const res = await request(app).post("/v1/api/todos").send({
+      name: null,
       startDate: "2021-01-01",
       endDate: "2021-01-02",
     });

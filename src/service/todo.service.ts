@@ -77,7 +77,6 @@ class TodoService {
 
       myDataSource.getRepository(Todo).merge(todoToUpdate, todo);
       const result = await myDataSource.getRepository(Todo).save(todoToUpdate);
-      console.log("result", todo);
       return result;
     } catch (error) {
       console.log(error);
