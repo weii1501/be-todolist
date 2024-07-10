@@ -110,6 +110,23 @@ class TodoService {
       }
     }
   }
+
+  static async deleteAllTodos() {
+    try {
+      const results = await myDataSource.getRepository(Todo).delete({});
+
+      return results;
+    } catch (error) {
+      console.log(error);
+      if (error instanceof BadRequestError) {
+        throw new BadRequestError(error.message);
+      } else if (error instanceof CustomError) {
+        throw new CustomError(error.message, error.status);
+      } else {
+        throw new Error();
+      }
+    }
+  }
 }
 
 export default TodoService;

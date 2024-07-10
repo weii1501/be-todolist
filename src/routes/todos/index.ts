@@ -22,6 +22,10 @@ todosRouter.route("/:id").get(async function (req: Request, res: Response) {
   );
 });
 
+todosRouter.route("/").delete(async function (req: Request, res: Response) {
+  MessageHandle(TodoController.deleteAllTodos, req, res);
+});
+
 todosRouter.route("/").post(
   body("name")
     .notEmpty()
@@ -44,7 +48,9 @@ todosRouter.route("/").post(
   // Nếu có endDate thì phải có startDate
   body("endDate").custom((value, { req }) => {
     if (value && !req.body.startDate) {
-      throw new BadRequestError("Start date is required when end date is provided");
+      throw new BadRequestError(
+        "Start date is required when end date is provided"
+      );
     }
     return true;
   }),

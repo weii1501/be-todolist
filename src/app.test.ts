@@ -91,3 +91,10 @@ describe("DELETE /v1/api/todos/:id", () => {
     expect(res.statusCode).toBe(204);
   });
 });
+
+describe("DELETE /v1/api/todos/", () => {
+    it("should delete all todos", async () => {
+      const res = await request(app).delete("/v1/api/todos/");
+      expect(res.statusCode).toBe(204);
+    });
+  });

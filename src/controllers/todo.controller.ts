@@ -31,6 +31,11 @@ class TodoController {
     const result = await TodoService.getTodoById(id);
     return result;
   }
+
+  async deleteAllTodos() {
+    const result = await TodoService.deleteAllTodos();
+    return result;
+  }
 }
 
 const todoController = new TodoController();
