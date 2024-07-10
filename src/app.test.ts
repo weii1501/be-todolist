@@ -48,6 +48,27 @@ describe("POST /v1/api/todos", () => {
   });
 });
 
+describe("POST /v1/api/todos", () => {
+  it("Task name must be non-empty", async () => {
+    const res = await request(app).post("/v1/api/todos").send({
+      startDate: "2021-01-01",
+      endDate: "2021-01-02",
+    });
+    expect(res.statusCode).toBe(400);
+  });
+});
+
+describe("POST /v1/api/todos", () => {
+  it("start date must be present if there is an end date", async () => {
+    const res = await request(app).post("/v1/api/todos").send({
+      name: "New Todo",
+      startDate: null,
+      endDate: "2021-01-02",
+    });
+    expect(res.statusCode).toBe(400);
+  });
+});
+
 describe("PUT /v1/api/todos/:id", () => {
   it("should update a todo", async () => {
     const res = await request(app).put("/v1/api/todos/5").send({
