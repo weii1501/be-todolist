@@ -2,6 +2,7 @@ import request from "supertest";
 import app from "./app";
 
 import { myDataSource } from "./app-data-source";
+import data from '../node_modules/type-fest/source/readonly-deep.d';
 
 beforeAll(async () => {
   await myDataSource.initialize();
@@ -72,7 +73,10 @@ describe("POST /v1/api/todos", () => {
 
 describe("PUT /v1/api/todos/:id", () => {
   it("should update a todo", async () => {
-    const res = await request(app).put("/v1/api/todos/5").send({
+    const data = await request(app).get("/v1/api/todos");
+    const todoData = data.body.content[0];
+
+    const res = await request(app).put(`/v1/api/todos/${todoData.id}`).send({
       name: "Updated Todo",
       startDate: "2021-01-01",
       endDate: "2021-01-02",
