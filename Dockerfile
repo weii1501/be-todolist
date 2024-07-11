@@ -13,8 +13,8 @@ RUN yarn install
 # Copy the rest of the application code to the working directory
 COPY . .
 
-# Expose the port the app runs on
-EXPOSE 7979
+# # Expose the port the app runs on
+# EXPOSE 7979
 
 # Define the command to run the application
 CMD ["yarn", "start"]
