@@ -18,7 +18,7 @@ git clone https://github.com/weii1501/be-todolist.git
 
 2. Change to the project directory
 ```bash
-cd todolist
+cd be-todolist
 ```
 
 3. Install dependencies
