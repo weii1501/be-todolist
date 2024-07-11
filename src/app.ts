@@ -6,6 +6,7 @@ import morgan from "morgan";
 import apiRouter from "./routes";
 import "reflect-metadata";
 import { myDataSource } from "./app-data-source";
+import { checkOverload, countConnect } from "./helper/chech.connect";
 
 const app = express();
 dotenv.config();
@@ -28,6 +29,8 @@ myDataSource
   .initialize()
   .then(() => {
     console.log("Data Source has been initialized!");
+    countConnect();
+    checkOverload();
   })
   .catch((err) => {
     console.error("Error during Data Source initialization:", err);

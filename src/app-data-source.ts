@@ -7,6 +7,6 @@ export const myDataSource = new DataSource({
   type: "sqlite",
   database: DATABASE_NAME,
   entities: ["src/entity/*.ts"],
-  logging: LOGGING,
+  // logging: LOGGING,
   synchronize: true,
 });
