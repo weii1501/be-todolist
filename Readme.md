@@ -5,7 +5,7 @@ This is a Todo List API built with TypeScript, Express, TypeORM, and SQLite in-m
 
 ## Prerequisites
 
-- Node.js, Typescript
+- Node.js, Typescript, Docker
 - Yarn package manager
 
 ## Installation
@@ -48,3 +48,27 @@ yarn test
 The application uses the following environment variables:
 - PORT: The port on which the server will run (default is 3000)
 - NODE_ENV: it is an environment variable that stands for "Node Environment".
+
+## How to Run the Application with Docker
+1. Build and run the Docker container
+- Use Docker Compose to build and run the application:
+```bash 
+docker-compose up --build
+```
+
+2. Access the application
+- Once the container is successfully started, open your browser and navigate to:
+```bash
+http://localhost:7979
+```
+
+3. Stop the application
+- To stop the container, press `Ctrl + C` in the terminal where Docker Compose is running, or use the following command:
+```bash
+docker-compose down
+```
+
+4. File Structure
+- `Dockerfile`: Defines how to build the Docker image for the application.
+- `docker-compose.yml`: Defines the Docker services and how they interact.
+- `.dockerignore`: Lists the files and directories to be ignored when building the Docker image.
