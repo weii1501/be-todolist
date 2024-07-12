@@ -47,7 +47,11 @@ yarn test
 ## Environment Variables
 The application uses the following environment variables:
 - PORT: The port on which the server will run (default is 3000)
-- NODE_ENV: it is an environment variable that stands for "Node Environment".
+- NODE_ENV: it is an environment variable that stands for "Node Environment
+```env
+PORT=7979
+NODE_ENV=dev
+```
 
 ## How to Run the Application with Docker
 1. Build and run the Docker container
@@ -72,3 +76,4 @@ docker-compose down
 - `Dockerfile`: Defines how to build the Docker image for the application.
 - `docker-compose.yml`: Defines the Docker services and how they interact.
 - `.dockerignore`: Lists the files and directories to be ignored when building the Docker image.
+
