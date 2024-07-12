@@ -2,7 +2,7 @@ import request from "supertest";
 import app from "./app";
 
 import { myDataSource } from "./app-data-source";
-import data from '../node_modules/type-fest/source/readonly-deep.d';
+import data from "../node_modules/type-fest/source/readonly-deep.d";
 
 beforeAll(async () => {
   await myDataSource.initialize();
@@ -97,8 +97,8 @@ describe("DELETE /v1/api/todos/:id", () => {
 });
 
 describe("DELETE /v1/api/todos/", () => {
-    it("should delete all todos", async () => {
-      const res = await request(app).delete("/v1/api/todos/");
-      expect(res.statusCode).toBe(204);
-    });
+  it("should delete all todos", async () => {
+    const res = await request(app).delete("/v1/api/todos/");
+    expect(res.statusCode).toBe(204);
   });
+});

@@ -12,5 +12,6 @@
     "strictPropertyInitialization": false,
     "strictNullChecks": false
   },
-  "include": ["src/**/*.ts", "server.ts"]
+  "include": ["**/*"],
+  "exclude": ["node_modules", "dist"]
 }
