@@ -56,4 +56,6 @@ app.use((error: HttpError, req: Request, res: Response, next: NextFunction) => {
   });
 });
 
+console.log("App is running on port 3000");
+
 export default app;
